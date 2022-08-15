@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web-application model prediction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #daeef8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.predictbtn {
+  background-color: #4fb4f7;
+  color: black;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.predictbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.inputvar {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <form action="{{url_for('getPredict')}}" method="POST">
+      <h1 style="color:DodgerBlue;">Churn prediction model</h1>
+        <!-- <img src="pic_churn.png"  alt="churn prediction" width="460" height="345" /> -->
+      <p>It’s a predictive model that estimates — at the level of individual customers — the propensity (or susceptibility) 
+        they have to leave. For each customer at any given time, it tells us how high the risk is of losing them in the future.</p>
+      <hr>
+
+      <p>
+      <label for="gender"><b>Please select your gender.</b></label>
+      <select name="x1" required>
+        <option value="">Please select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      </p>
+
+      <p>
+        <label for="SeniorCitizen"><b>Please select your SeniorCitizen.</b></label>
+        <select name="x2" required>
+          <option value="">Please select</option>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="Partner"><b>Please select your Partner.</b></label>
+        <select name="x3" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="Dependents"><b>Please select your Dependents.</b></label>
+        <select name="x4" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="tenure"><b>Please select your tenure that value between 0-100.</b></label>
+        <input type="number" name="x5"  min="0" max="100" required>
+        </p>
+
+      <!-- <p>
+        <label for="PhoneService"><b>Please select your PhoneService.</b></label>
+        <select name="x6" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+        </select>
+        </p> -->
+
+     <p>
+        <label for="MultipleLines"><b>Please select your MultipleLines.</b></label>
+        <select name="x6" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No phone service">No phone service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="InternetService"><b>Please select your InternetService.</b></label>
+        <select name="x7" required>
+          <option value="">Please select</option>
+          <option value="Fiber optic">Fiber optic</option>
+          <option value="DSL">DSL</option>
+          <option value="No">No</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="OnlineSecurity"><b>Please select your OnlineSecurity.</b></label>
+        <select name="x8" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="OnlineBackup"><b>Please select your OnlineBackup.</b></label>
+        <select name="x9" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="DeviceProtection"><b>Please select your DeviceProtection.</b></label>
+        <select name="x10" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+
+      <p>
+        <label for="TechSupport"><b>Please select your TechSupport.</b></label>
+        <select name="x11" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="StreamingTV"><b>Please select your StreamingTV.</b></label>
+        <select name="x12" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="StreamingMovies"><b>Please select your StreamingMovies.</b></label>
+        <select name="x13" required>
+          <option value="">Please select</option>
+          <option value="No">No</option>
+          <option value="Yes">Yes</option>
+          <option value="No internet service">No internet service</option>
+        </select>
+        </p>
+
+      <p>
+        <label for="Contract"><b>Please select your Contract.</b></label>
+        <select name="x14" required>
+          <option value="">Please select</option>
+          <option value="Month-to-month">Month to Month</option>
+          <option value="One year">One year</option>
+          <option value="Two year">Two year</option>
+        </select>
+        </p>
+
+        <p>
+          <label for="PaperlessBilling"><b>Please select your PaperlessBilling.</b></label>
+          <select name="x15" required>
+            <option value="">Please select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          </p>
+
+        <p>
+          <label for="PaymentMethod"><b>Please select your PaymentMethod.</b></label>
+          <select name="x16" required>
+            <option value="">Please select</option>
+            <option value="Electronic check">Electronic check</option>
+            <option value="Mailed check">Mailed check</option>
+            <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+            <option value="Credit card (automatic)">Credit card (automatic)</option>
+          </select>
+          </p>
+
+        <p>
+          <label for="MonthlyCharges"><b>Please select your MonthlyCharges that value between 0-1000.</b></label>
+          <input type="number" name="x17"  min="0" max="1000" required>
+          </p>
+
+        <!-- <p>
+          <label for="TotalCharges"><b>Please select your TotalCharges that value between 0-100000.</b></label>
+          <input type="number" name="x19"  min="0" max="100000" required>
+          </p> -->
+
+      <hr>
+      
+      <button type="submit" class="predictbtn", value=>Get prediction</button>
+    </form>
+
+    <br>
+    <br>
+    <h1 style="color:rgb(5, 5, 5);">{{prediction_text}}</h1>
+  </div>
+</body>
+</html>
