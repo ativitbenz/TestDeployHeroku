@@ -1,2 +1,2 @@
 # testDeployHeroku
-This is a tutorial for deployment ML Model with Heroku
+This is a tutorial for deployment Oralce ML Model with Heroku
